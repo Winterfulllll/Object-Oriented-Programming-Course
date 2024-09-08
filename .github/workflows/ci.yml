@@ -1,0 +1,26 @@
+name: Labs CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y build-essential cmake g++
+
+      - name: Configure CMake
+        run: cmake -S . -B build -DBRANCH_NAME=${GITHUB_HEAD_REF}
+
+      - name: Build
+        run: cmake --build build
+
+      - name: Test
+        working-directory: build
+        run: ctest -R ${GITHUB_HEAD_REF}
