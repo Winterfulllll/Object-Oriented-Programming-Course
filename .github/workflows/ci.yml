@@ -1,9 +1,9 @@
 name: Labs CI
 
 on:
-  pull_request:
-    branches-ignore:
-      - main
+  push:
+    branches:
+      - "lab*"
 
 jobs:
   build:
@@ -23,4 +23,4 @@ jobs:
 
       - name: Test
         working-directory: build
-        run: ctest -R ${GITHUB_HEAD_REF}
+        run: ctest -R ${BRANCH_NAME}
