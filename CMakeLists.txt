@@ -24,7 +24,15 @@ else()
 endif()
 
 if(EXISTS "solutions/${BRANCH_NAME}")
+  if(BRANCH_NAME STREQUAL "lab6" OR BRANCH_NAME STREQUAL "lab7")
+  add_library(${BRANCH_NAME}_lib STATIC
+  solutions/${BRANCH_NAME}/src/dragon.cpp
+  solutions/${BRANCH_NAME}/src/elf.cpp
+  solutions/${BRANCH_NAME}/src/knight_errant.cpp
+  solutions/${BRANCH_NAME}/src/npc.cpp)
+  else()
   add_library(${BRANCH_NAME}_lib STATIC solutions/${BRANCH_NAME}/src/solution.cpp)
+  endif()
 
   add_executable(${BRANCH_NAME}_exe solutions/${BRANCH_NAME}/main.cpp)
   add_executable(${BRANCH_NAME}_tests solutions/${BRANCH_NAME}/tests/tests.cpp)
