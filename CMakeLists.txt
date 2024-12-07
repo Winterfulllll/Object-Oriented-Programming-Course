@@ -22,7 +22,7 @@ else()
   set(BRANCH_NAME "lab1") # Default branch for local builds
   message(STATUS "Not running in GitHub Actions context. Building ${BRANCH_NAME}.")
 endif()
-
+  
 if(EXISTS "solutions/${BRANCH_NAME}")
   if(BRANCH_NAME STREQUAL "lab6" OR BRANCH_NAME STREQUAL "lab7")
   add_library(${BRANCH_NAME}_lib STATIC
